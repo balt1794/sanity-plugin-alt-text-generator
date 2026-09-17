@@ -1,8 +1,8 @@
 # sanity-plugin-alt-text-generator
 
-Generate AI-powered, SEO-friendly alt text for images inside Sanity Studio — one image at a time, or in bulk across your whole dataset.
+Generate alt text for your images inside Sanity CMS. You can generate alt text one image at a time, or in bulk for all your assets.
 
-Powered by [Alt Text Generator AI](https://alttextgeneratorai.com). [Get a free API key →](https://alttextgeneratorai.com/dashboard)
+[Get a free API key →](https://alttextgeneratorai.com/dashboard)
 
 ## Features
 
@@ -31,7 +31,7 @@ export default defineConfig({
 })
 ```
 
-No API key required at setup time — open the **Alt Text Generator** tool in the Studio nav and paste your key into its Settings panel ([get a free one here](https://alttextgeneratorai.com/dashboard)). You can also pass a default key in code for local development/CI; the Settings-panel key takes priority once saved:
+Open the **Alt Text Generator** tool in the Studio nav and paste your key into its Settings panel ([get a free one here](https://alttextgeneratorai.com/dashboard)). You can also pass a default key in code for local development/CI.
 
 ```ts
 altTextGenerator({apiKey: process.env.SANITY_STUDIO_ALT_TEXT_API_KEY})
