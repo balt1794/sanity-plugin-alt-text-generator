@@ -2,7 +2,9 @@
 
 Generate alt text for your images inside Sanity CMS. You can generate alt text one image at a time, or in bulk for all your assets.
 
-[Get a free API key →](https://alttextgeneratorai.com/dashboard)
+<br>
+
+**[Get a free API key](https://alttextgeneratorai.com/dashboard)**
 
 ## Features
 

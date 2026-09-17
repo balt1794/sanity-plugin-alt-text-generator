@@ -1,0 +1,13 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Image frame -->
+  <rect x="62" y="82" width="150" height="120" rx="20" ry="20" fill="none" stroke="#FFFFFF" stroke-width="14"/>
+  <circle cx="102" cy="122" r="14" fill="#FFFFFF"/>
+  <g clip-path="url(#frame)">
+    <polyline points="45,205 112,148 138,172 168,130 228,205" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <defs>
+    <clipPath id="frame">
+      <rect x="62" y="82" width="150" height="120" rx="20" ry="20"/>
+    </clipPath>
+  </defs>
+</svg>
