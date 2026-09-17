@@ -4,7 +4,7 @@ Generate alt text for your images inside Sanity CMS. You can generate alt text o
 
 <br>
 
-**[Get a free API key](https://alttextgeneratorai.com/dashboard)**
+[Get a free API key](https://alttextgeneratorai.com/dashboard)
 
 ## Features
 
