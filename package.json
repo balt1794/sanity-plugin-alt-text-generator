@@ -1,0 +1,77 @@
+{
+  "name": "sanity-plugin-alt-text-generator",
+  "version": "1.0.0",
+  "description": "Generate AI-powered, SEO-friendly alt text for images inside Sanity Studio — per-field, or in bulk across your whole dataset from a built-in dashboard.",
+  "keywords": [
+    "sanity",
+    "sanity-plugin",
+    "alt-text",
+    "accessibility",
+    "seo",
+    "ai",
+    "images"
+  ],
+  "homepage": "https://github.com/balt1794/sanity-plugin-alt-text-generator#readme",
+  "bugs": {
+    "url": "https://github.com/balt1794/sanity-plugin-alt-text-generator/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balt1794/sanity-plugin-alt-text-generator.git"
+  },
+  "license": "MIT",
+  "author": "Bryam Loaiza <balt1794@gmail.com>",
+  "browserslist": "extends @sanity/browserslist-config",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "plugin-kit verify-package --silent && pkg-utils build --strict --check --clean",
+    "format": "oxfmt",
+    "link-watch": "plugin-kit link-watch",
+    "lint": "oxlint",
+    "prepublishOnly": "npm run build",
+    "watch": "pkg-utils watch --strict"
+  },
+  "dependencies": {
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/ui": "^4.2.1"
+  },
+  "devDependencies": {
+    "@sanity/browserslist-config": "^1.0.5",
+    "@sanity/pkg-utils": "^13.0.0",
+    "@sanity/plugin-kit": "^10.0.9",
+    "@types/react": "^19.3.0",
+    "oxfmt": "^0.68.0",
+    "oxlint": "^1.83.0",
+    "oxlint-tsgolint": "^7.0.2001",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "sanity": "^6.13.2",
+    "styled-components": "^6.5.3",
+    "typescript": "^6.0.3"
+  },
+  "peerDependencies": {
+    "react": "^18",
+    "sanity": "^5 || ^6.0.0-0"
+  },
+  "engines": {
+    "node": ">=20.19 <22 || >=22.12"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": "./dist/index.js",
+      "./package.json": "./package.json"
+    }
+  }
+}
