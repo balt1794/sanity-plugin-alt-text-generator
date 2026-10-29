@@ -295,12 +295,14 @@ export function AltTextDashboard() {
                         />
                       )}
                       <Box style={{width: 220, flexShrink: 0}}>
-                        <Text size={1} weight="medium">
-                          {row.documentTitle}
-                        </Text>
-                        <Text size={1} muted>
-                          {row.documentType} · {row.fieldLabel}
-                        </Text>
+                        <Stack gap={2}>
+                          <Text size={1} weight="medium">
+                            {row.documentTitle}
+                          </Text>
+                          <Text size={1} muted>
+                            {row.documentType} · {row.fieldLabel}
+                          </Text>
+                        </Stack>
                       </Box>
                       <Box flex={1}>
                         <Stack gap={2}>
