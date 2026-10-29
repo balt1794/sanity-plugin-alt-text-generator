@@ -14,8 +14,8 @@ export interface AltTextGeneratorConfig {
   /** Default language for generated alt text, e.g. "english", "spanish". */
   language?: string
   /**
-   * Write alt text automatically when an image is uploaded and its alt field is
-   * still empty. Off by default because each image uses one credit. People can
+   * Write alt text automatically when an image is uploaded (if its alt field is
+   * empty) or swapped for a different image. Off by default because each image uses one credit. People can
    * also switch it on in the plugin's Settings panel, which takes priority.
    */
   autoGenerate?: boolean

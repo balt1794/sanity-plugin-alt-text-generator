@@ -69,7 +69,7 @@ Turn on **Write alt text automatically when an image is uploaded** in the tool's
 altTextGenerator({autoGenerate: true})
 ```
 
-When someone uploads or swaps an image and its alt text is empty, the plugin writes it right away. Each image uses one credit. Existing images are never changed just by opening a document. This needs the image field wired up with `AltTextField` or `AltTextImageInput` (see below). The Settings panel choice takes priority over the code option.
+When someone uploads an image and its alt text is empty, the plugin writes it right away. If they swap an image for a different one, it writes new alt text for the new image. Each image uses one credit. Existing images are never changed just by opening a document. This needs the image field wired up with `AltTextField` or `AltTextImageInput` (see below). The Settings panel choice takes priority over the code option.
 
 ![Settings with the automatic alt text checkbox turned on](https://raw.githubusercontent.com/balt1794/sanity-plugin-alt-text-generator/main/assets/auto-settings.png)
 ![Alt text filled in right after an upload](https://raw.githubusercontent.com/balt1794/sanity-plugin-alt-text-generator/main/assets/auto-result.png)

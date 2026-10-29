@@ -2,10 +2,12 @@ import {useEffect, useRef} from 'react'
 import {useAltTextGeneratorConfig} from './context'
 
 /**
- * Runs `generate` once when a new image is uploaded or swapped on a field whose
- * alt text is still empty, if auto-generate is switched on and an API key is
- * set. The asset the form opens with is remembered first, so existing images
- * that lack alt text are never touched just by opening a document.
+ * Runs `generate` once when an image is uploaded or swapped, if auto-generate
+ * is switched on and an API key is set. A first upload only gets alt text when
+ * the field is empty. Swapping one image for another always writes new alt
+ * text, because the old text describes the old image. The asset the form opens
+ * with is remembered first, so existing images are never touched just by
+ * opening a document.
  */
 export function useAutoGenerate(assetRef: string | undefined, hasAlt: boolean, generate: () => void) {
   const config = useAltTextGeneratorConfig()
@@ -18,6 +20,7 @@ export function useAutoGenerate(assetRef: string | undefined, hasAlt: boolean, g
     lastRef.current = assetRef
     if (!assetRef || assetRef === previous) return
     const {generate: run, hasAlt: filled, enabled} = latest.current
-    if (enabled && !filled) run()
+    if (!enabled) return
+    if (previous || !filled) run()
   }, [assetRef])
 }
