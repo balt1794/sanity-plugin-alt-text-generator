@@ -10,6 +10,7 @@ Generate alt text for your images inside Sanity CMS. You can generate alt text o
 
 - **Per-field "Generate Alt Text" button** on any image field with an `alt` subfield
 - **Bulk dashboard** — a dedicated "Alt Text Generator" tool in the Studio nav that scans your entire dataset for image fields, lets you filter by missing/all, generate one at a time or in bulk, review and edit before saving, and save every change in one transaction
+- **Automatic mode** — optionally write alt text the moment an image is uploaded, when its alt text is empty
 - **In-Studio Settings panel** — paste your API key directly in the Studio, no code or redeploy required; shows your remaining credit balance
 - Automatically finds every image field with an `alt` subfield across your schema — no manual field configuration needed
 
@@ -69,6 +70,9 @@ altTextGenerator({autoGenerate: true})
 ```
 
 When someone uploads or swaps an image and its alt text is empty, the plugin writes it right away. Each image uses one credit. Existing images are never changed just by opening a document. This needs the image field wired up with `AltTextField` or `AltTextImageInput` (see below). The Settings panel choice takes priority over the code option.
+
+![Settings with the automatic alt text checkbox turned on](https://raw.githubusercontent.com/balt1794/sanity-plugin-alt-text-generator/main/assets/auto-settings.png)
+![Alt text filled in right after an upload](https://raw.githubusercontent.com/balt1794/sanity-plugin-alt-text-generator/main/assets/auto-result.png)
 
 ### Wiring up the per-field button
 

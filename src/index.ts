@@ -26,6 +26,10 @@ export type {AltTextGeneratorConfig} from './context'
  * at alttextgeneratorai.com). You can also pass a default `apiKey` here for
  * local development/CI; the Settings-panel key takes priority once saved.
  *
+ * To write alt text automatically when an image is uploaded (and its alt text
+ * is empty), tick the checkbox in the same Settings panel or pass
+ * `altTextGenerator({autoGenerate: true})`. Each image uses one credit.
+ *
  * Then wire it into your schema in one of two ways:
  *
  * 1. On the `alt` string field itself (recommended — puts the "Generate Alt
