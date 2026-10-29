@@ -1,6 +1,6 @@
 {
   "name": "sanity-plugin-alt-text-generator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generate AI-powered, SEO-friendly alt text for images inside Sanity Studio — per-field, or in bulk across your whole dataset from a built-in dashboard.",
   "keywords": [
     "sanity",

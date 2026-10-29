@@ -4,6 +4,7 @@ import {set, useClient, useFormValue, type StringInputProps} from 'sanity'
 import imageUrlBuilder from '@sanity/image-url'
 import {useAltTextGeneratorConfig} from './context'
 import {generateAltText, type GenerateResult} from './generateAltText'
+import {useAutoGenerate} from './useAutoGenerate'
 
 const API_VERSION = '2024-01-01'
 
@@ -56,6 +57,8 @@ export function AltTextField(props: StringInputProps) {
       setLoading(false)
     }
   }, [imageValue, client, config, onChange])
+
+  useAutoGenerate(imageValue?.asset?._ref, Boolean(value), handleGenerate)
 
   return (
     <Stack gap={2}>

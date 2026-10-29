@@ -1,7 +1,7 @@
 import {useEffect, useMemo, useState} from 'react'
 import {useClient, type LayoutProps} from 'sanity'
 import {AltTextGeneratorContext, type AltTextGeneratorConfig} from './context'
-import {getSettingsApiKey} from './settingsStore'
+import {getSettings} from './settingsStore'
 
 const API_VERSION = '2024-01-01'
 
@@ -21,12 +21,15 @@ export function createAltTextGeneratorProvider(staticConfig: AltTextGeneratorCon
   return function AltTextGeneratorProvider(props: LayoutProps) {
     const client = useClient({apiVersion: API_VERSION})
     const [liveApiKey, setLiveApiKey] = useState<string | undefined>(undefined)
+    const [liveAutoGenerate, setLiveAutoGenerate] = useState<boolean | undefined>(undefined)
 
     useEffect(() => {
       let cancelled = false
-      getSettingsApiKey(client)
-        .then((key) => {
-          if (!cancelled) setLiveApiKey(key)
+      getSettings(client)
+        .then((settings) => {
+          if (cancelled) return
+          setLiveApiKey(settings.apiKey)
+          setLiveAutoGenerate(settings.autoGenerate)
         })
         .catch(() => {
           // No settings doc yet, or no read access — fall back to static config silently.
@@ -41,9 +44,11 @@ export function createAltTextGeneratorProvider(staticConfig: AltTextGeneratorCon
         apiKey: liveApiKey || staticConfig.apiKey || '',
         apiEndpoint: staticConfig.apiEndpoint,
         language: staticConfig.language,
+        autoGenerate: liveAutoGenerate ?? staticConfig.autoGenerate ?? false,
         updateApiKey: setLiveApiKey,
+        updateAutoGenerate: setLiveAutoGenerate,
       }),
-      [liveApiKey, staticConfig],
+      [liveApiKey, liveAutoGenerate, staticConfig],
     )
 
     return (

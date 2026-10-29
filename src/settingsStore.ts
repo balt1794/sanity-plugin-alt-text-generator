@@ -12,11 +12,19 @@ export const SETTINGS_DOC_TYPE = 'sanityPluginAltTextGeneratorSettings'
 
 const API_VERSION = '2024-01-01'
 
-export async function getSettingsApiKey(client: SanityClient): Promise<string | undefined> {
-  const key = await client
+export type StoredSettings = {apiKey?: string; autoGenerate?: boolean}
+
+export async function getSettings(client: SanityClient): Promise<StoredSettings> {
+  const doc = await client
     .withConfig({apiVersion: API_VERSION})
-    .fetch<string | null>(`*[_id == $id][0].apiKey`, {id: SETTINGS_DOC_ID})
-  return key || undefined
+    .fetch<{apiKey?: string | null; autoGenerate?: boolean | null} | null>(
+      `*[_id == $id][0]{apiKey, autoGenerate}`,
+      {id: SETTINGS_DOC_ID},
+    )
+  return {
+    apiKey: doc?.apiKey || undefined,
+    autoGenerate: typeof doc?.autoGenerate === 'boolean' ? doc.autoGenerate : undefined,
+  }
 }
 
 export async function saveSettingsApiKey(client: SanityClient, apiKey: string): Promise<void> {
@@ -25,5 +33,14 @@ export async function saveSettingsApiKey(client: SanityClient, apiKey: string): 
     .transaction()
     .createIfNotExists({_id: SETTINGS_DOC_ID, _type: SETTINGS_DOC_TYPE})
     .patch(SETTINGS_DOC_ID, (p) => p.set({apiKey}))
+    .commit()
+}
+
+export async function saveSettingsAutoGenerate(client: SanityClient, autoGenerate: boolean): Promise<void> {
+  await client
+    .withConfig({apiVersion: API_VERSION})
+    .transaction()
+    .createIfNotExists({_id: SETTINGS_DOC_ID, _type: SETTINGS_DOC_TYPE})
+    .patch(SETTINGS_DOC_ID, (p) => p.set({autoGenerate}))
     .commit()
 }

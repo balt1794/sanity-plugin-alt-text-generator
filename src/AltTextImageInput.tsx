@@ -4,6 +4,7 @@ import {set, useClient, type ImageInputProps} from 'sanity'
 import imageUrlBuilder from '@sanity/image-url'
 import {useAltTextGeneratorConfig} from './context'
 import {generateAltText, type GenerateResult} from './generateAltText'
+import {useAutoGenerate} from './useAutoGenerate'
 
 const API_VERSION = '2024-01-01'
 
@@ -48,6 +49,8 @@ export function AltTextImageInput(props: ImageInputProps) {
       setLoading(false)
     }
   }, [value, client, config, onChange])
+
+  useAutoGenerate(value?.asset?._ref, Boolean((value as {alt?: string} | undefined)?.alt), handleGenerate)
 
   return (
     <Stack gap={2}>

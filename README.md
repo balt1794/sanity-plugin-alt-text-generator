@@ -60,6 +60,16 @@ Open the **Alt Text Generator** tool in the Studio nav and paste your key into i
 altTextGenerator({apiKey: process.env.SANITY_STUDIO_ALT_TEXT_API_KEY})
 ```
 
+### Generate alt text automatically on upload
+
+Turn on **Write alt text automatically when an image is uploaded** in the tool's Settings panel, or in code:
+
+```ts
+altTextGenerator({autoGenerate: true})
+```
+
+When someone uploads or swaps an image and its alt text is empty, the plugin writes it right away. Each image uses one credit. Existing images are never changed just by opening a document. This needs the image field wired up with `AltTextField` or `AltTextImageInput` (see below). The Settings panel choice takes priority over the code option.
+
 ### Wiring up the per-field button
 
 Any image field with an `alt` subfield is automatically picked up by the bulk dashboard. To also get a one-click "Generate Alt Text" button on that field, wire it in one of two ways:

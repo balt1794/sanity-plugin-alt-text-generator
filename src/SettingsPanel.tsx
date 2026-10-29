@@ -1,8 +1,8 @@
 import {useCallback, useEffect, useState} from 'react'
-import {Box, Button, Card, Flex, Stack, Text, TextInput} from '@sanity/ui'
+import {Box, Button, Card, Checkbox, Flex, Stack, Text, TextInput} from '@sanity/ui'
 import {useClient} from 'sanity'
 import {useAltTextGeneratorConfig} from './context'
-import {saveSettingsApiKey} from './settingsStore'
+import {saveSettingsApiKey, saveSettingsAutoGenerate} from './settingsStore'
 import {fetchCreditsRemaining} from './verifyCredits'
 
 const API_VERSION = '2024-01-01'
@@ -67,6 +67,21 @@ export function SettingsPanel() {
     }
   }, [client, keyInput, config, checkCredits])
 
+  const handleAutoGenerate = useCallback(
+    async (checked: boolean) => {
+      setError(null)
+      const previous = config.autoGenerate
+      config.updateAutoGenerate(checked)
+      try {
+        await saveSettingsAutoGenerate(client, checked)
+      } catch (e) {
+        config.updateAutoGenerate(previous)
+        setError(e instanceof Error ? e.message : 'Failed to save.')
+      }
+    },
+    [client, config],
+  )
+
   return (
     <Card padding={4} radius={2} border tone="transparent">
       <Stack gap={3}>
@@ -93,6 +108,10 @@ export function SettingsPanel() {
             disabled={saving || keyInput.trim() === config.apiKey}
             onClick={handleSave}
           />
+        </Flex>
+        <Flex as="label" gap={2} align="center">
+          <Checkbox checked={config.autoGenerate} onChange={(e) => handleAutoGenerate(e.currentTarget.checked)} />
+          <Text size={1}>Write alt text automatically when an image is uploaded (uses 1 credit per image)</Text>
         </Flex>
         {justSaved && (
           <Text size={1} style={{color: 'var(--card-positive-fg-color, #2a9d5c)'}}>
