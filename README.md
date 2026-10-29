@@ -19,6 +19,8 @@ Generate alt text for your images inside Sanity CMS. You can generate alt text o
 npm install sanity-plugin-alt-text-generator
 ```
 
+Requires a Sanity Studio on v5 or v6 with React 18 or 19. Sanity Studio v6 itself needs Node.js 22.12 or newer.
+
 ## Usage
 
 Add the plugin in `sanity.config.ts` (or `.js`):
